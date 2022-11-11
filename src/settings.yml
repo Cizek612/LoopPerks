@@ -1,0 +1,106 @@
+Perks:
+ "MONEY":
+   Type: COMMAND
+   Activation-Commands:
+    - "eco give %player% 500"
+   Deactivation-Commands:
+    - "eco remove %player% 500"
+
+Settings:
+ Max-Perks: 3
+
+Messages:
+  "HELP":
+    Message:
+     Enabled: true
+     Value:
+      - " "
+      - "&6&l[&e&l!&6&l] &e&lLoop &6&lPerks"
+      - "&7&oCoded and configured by Loop Studios"
+      - " "
+      - "&6&lCOMMANDS:"
+      - " &8» &6/perks &egive <player> <perk> &8- &fGive a perk"
+      - " &8» &6/perks &eremove <player> <perk> &8- &fRemove a perk"
+      - " "
+  "NO-PERMISSION":
+    Message:
+      Enabled: true
+      Value:
+        - "&4&l[&c&l!&4&l] &cYou do not have the permission to execute this command!"
+  "LIMIT-REACHED":
+    Message:
+      Enabled: true
+      Value:
+        - "&4&l[&c&l!&4&l] &cYou have reached the equipped-perk limit of &4&n%limit %&r&c!"
+  "NOT-UNLOCKED":
+    Message:
+      Enabled: true
+      Value:
+        - "&4&l[&c&l!&4&l] &4&nYou&c haven't unlocked this perk yet!"
+  "INVALID-ARGUMENTS":
+    Message:
+      Enabled: true
+      Value:
+        - "&4&l[&c&l!&4&l] &4&nYou&c have entered an &4&ninvalid&c argument!"
+  "PERK-RECEIVED":
+    Message:
+      Enabled: true
+      Value:
+        - "&2&l[&a&l!&2&l] &2&nYou&a have unlocked the &2&n%perk%&a perk!"
+  "PERK-REMOVED":
+    Message:
+      Enabled: true
+      Value:
+        - "&4&l[&c&l!&4&l] &4&nYour&c &4&n%perk%&c perk was removed!"
+  "PERK-REMOVED-ADMIN":
+    Message:
+      Enabled: true
+      Value:
+        - "&2&l[&a&l!&2&l] &2&nYou&a have removed &2&n%player%&a's &2&n%perk%&a perk!"
+  "PERK-GIVEN":
+    Message:
+      Enabled: true
+      Value:
+        - "&2&l[&a&l!&2&l] &2&nYou&a have given &2&n%player%&a a &2&n%perk%&a perk!"
+  "PERK-EQUIPPED":
+    Message:
+      Enabled: true
+      Value:
+        - "&2&l[&a&l!&2&l] &2&nYou&a have equipped the &2&n%perk%&a perk!"
+  "PERK-UNEQUIPPED":
+    Message:
+      Enabled: true
+      Value:
+        - "&4&l[&c&l!&4&l] &4&nYou&c have unequipped the &4&n%perk%&c perk!"
+
+Menus:
+  "PERKS-MENU":
+    Title: "&8&lPERKS MENU"
+    Size: 9
+    Borders:
+      "GRAY":
+        Material: "STAINED_GLASS_PANE"
+        Amount: 1
+        Name: " "
+        Lore: []
+        Slots: [ 1,2,3,4,5,6,7,8 ]
+    Items:
+      "MONEY":
+        Perk-Item: true
+        Perk: "MONEY"
+        Material: "GOLD_INGOT"
+        Amount: 1
+        Name: "&2&l[&a&l!&2&l] &aMoney Perk"
+        Lore:
+          - " "
+          - "&aInformation"
+          - "&a▎ &7Status: %status%"
+          - "&a▎ &7Usage: &fLeft-Click"
+          - " "
+          - "&aDescription"
+          - "&7This perk gives you &a500$ &7when"
+          - "&7you equip it, but it also takes"
+          - "&a500$ &7from you when unequipped!"
+          - ""
+          - "&7&o( &f&oClick &7&oto equip! )"
+        Slot: 0
