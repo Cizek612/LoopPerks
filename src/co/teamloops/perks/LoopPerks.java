@@ -7,7 +7,7 @@ import co.teamloops.perks.listeners.JoinListener;
 import co.teamloops.perks.listeners.PlayerListener;
 import co.teamloops.perks.perk.Perk;
 import co.teamloops.perks.perk.menu.PerksMenu;
-import co.teamloops.perks.perk.registry.PerkRegistry;
+import co.teamloops.perks.perk.registry.PerksRegistry;
 import co.teamloops.perks.player.PerkPlayer;
 import co.teamloops.perks.player.registry.PlayerRegistry;
 import com.google.gson.Gson;
@@ -27,7 +27,7 @@ import java.io.Writer;
 public class LoopPerks extends JavaPlugin {
 
     public LoopPerks plugin;
-    public PerkRegistry perkRegistry;
+    public PerksRegistry perksRegistry;
     public PlayerRegistry playerRegistry;
     public PerksMenu perksMenu;
     private MessageCache messageCache;
@@ -60,14 +60,14 @@ public class LoopPerks extends JavaPlugin {
 
     private void init() {
         this.plugin = this;
-        this.perkRegistry = new PerkRegistry();
+        this.perksRegistry = new PerksRegistry();
         this.playerRegistry = new PlayerRegistry();
     }
 
 
     private void loadPerks() {
         for(final String key : this.settingsConfig.getConfigurationSection("Perks").getKeys(false)) {
-            this.perkRegistry.getRegistry().put(key, new Perk(key, settingsConfig));
+            this.perksRegistry.getRegistry().put(key, new Perk(key, settingsConfig));
         }
     }
 

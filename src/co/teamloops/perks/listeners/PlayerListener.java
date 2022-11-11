@@ -1,10 +1,10 @@
 package co.teamloops.perks.listeners;
 
 import co.teamloops.commons.abstracts.LoopListener;
-import co.teamloops.commons.builders.PlaceholderReplacer;
 import co.teamloops.perks.LoopPerks;
 import co.teamloops.perks.events.PerkEquipEvent;
 import co.teamloops.perks.events.PerkUnequipEvent;
+import co.teamloops.perks.perk.Perk;
 import co.teamloops.perks.perk.type.PerkType;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -18,23 +18,23 @@ public class PlayerListener extends LoopListener<LoopPerks> {
 
     @EventHandler
     public void onPerkEquipEvent(final PerkEquipEvent event) {
-        if(event.getPerk().getPerkType()!=PerkType.COMMAND) return;
-        final PlaceholderReplacer placeholderReplacer = new PlaceholderReplacer()
-                .addPlaceholder("%player%", event.getPlayer().getName());
+        final Perk perk = event.getPerk();
 
-        for(final String command : event.getPerk().getActivateCommand()) {
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), placeholderReplacer.parse(command));
+        if(perk.getPerkType()!=PerkType.COMMAND) return;
+
+        for(final String command : perk.getActivateCommand()) {
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), command.replace("%player%", event.getPlayer().getName()));
         }
     }
 
     @EventHandler
     public void onPerkUnequipEvent(final PerkUnequipEvent event) {
-        if(event.getPerk().getPerkType()!=PerkType.COMMAND) return;
-        final PlaceholderReplacer placeholderReplacer = new PlaceholderReplacer()
-                .addPlaceholder("%player%", event.getPlayer().getName());
+        final Perk perk = event.getPerk();
 
-        for(final String command : event.getPerk().getDeactivateCommands()) {
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), placeholderReplacer.parse(command));
+        if(perk.getPerkType()!=PerkType.COMMAND) return;
+
+        for(final String command : perk.getDeactivateCommands()) {
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), command.replace("%player%", event.getPlayer().getName()));
         }
     }
 

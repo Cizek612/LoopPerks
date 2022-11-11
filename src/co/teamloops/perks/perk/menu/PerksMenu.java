@@ -9,6 +9,7 @@ import co.teamloops.commons.utils.ColorUtil;
 import co.teamloops.perks.LoopPerks;
 import co.teamloops.perks.perk.Perk;
 import co.teamloops.perks.perk.menu.actions.PerkItemClickAction;
+import co.teamloops.perks.perk.registry.PerksRegistry;
 import co.teamloops.perks.player.PerkPlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -29,6 +30,7 @@ public class PerksMenu {
     public void openMenu(final Player player) {
         final PlaceholderReplacer loreReplacer = new PlaceholderReplacer();
         final UUID uuid = player.getUniqueId();
+        final PerksRegistry perksRegistry = plugin.getPerksRegistry();
         final PerkPlayer perkPlayer = plugin.getPlayerRegistry().getRegistry().get(uuid);
         final FileConfiguration settingsConfig = plugin.getSettingsConfig();
 
@@ -37,7 +39,7 @@ public class PerksMenu {
         for (final String key : settingsConfig.getConfigurationSection("Menus.PERKS-MENU.Items").getKeys(false)) {
 
             final int slot = settingsConfig.getInt("Menus.PERKS-MENU.Items." + key + ".Slot");
-            final Perk perk = plugin.getPerkRegistry().getRegistry().get(settingsConfig.getString("Menus.PERKS-MENU.Items." + key + ".Perk"));
+            final Perk perk = perksRegistry.getRegistry().get(settingsConfig.getString("Menus.PERKS-MENU.Items." + key + ".Perk"));
             loreReplacer.addPlaceholder("%status%", this.getStatus(perkPlayer.getUnlockedPerks().contains(perk.getName()), perkPlayer, perk));
 
             menu.setItemAt(slot, ItemUtils.getItem(settingsConfig, "Menus.PERKS-MENU.Items." + key).parse(loreReplacer));

@@ -4,6 +4,7 @@ import co.teamloops.commons.command.CommandBuilder;
 import co.teamloops.perks.LoopPerks;
 import co.teamloops.perks.commands.subcommands.PerksGiveCommand;
 import co.teamloops.perks.commands.subcommands.PerksRemoveCommand;
+import co.teamloops.perks.perk.menu.PerksMenu;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -30,9 +31,10 @@ public class PerkCommand extends CommandBuilder {
     public boolean onCommand(final CommandSender sender, final String[] args) {
 
         final Player player = (Player) sender;
+        final PerksMenu perksMenu = plugin.getPerksMenu();
 
         if (args.length == 0) {
-            plugin.getPerksMenu().openMenu(player);
+            perksMenu.openMenu(player);
             return false;
         }
 
@@ -48,7 +50,7 @@ public class PerkCommand extends CommandBuilder {
             return true;
         }
 
-        plugin.getPerksMenu().openMenu(player);
+        perksMenu.openMenu(player);
         return false;
     }
 }

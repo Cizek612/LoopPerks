@@ -4,7 +4,7 @@ import co.teamloops.commons.builders.PlaceholderReplacer;
 import co.teamloops.commons.chat.MessageCache;
 import co.teamloops.perks.LoopPerks;
 import co.teamloops.perks.commands.PerkSubCommand;
-import co.teamloops.perks.perk.registry.PerkRegistry;
+import co.teamloops.perks.perk.registry.PerksRegistry;
 import co.teamloops.perks.player.registry.PlayerRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -13,14 +13,14 @@ import org.bukkit.entity.Player;
 public class PerksGiveCommand extends PerkSubCommand {
 
     private final MessageCache messageCache;
-    private final PerkRegistry perkRegistry;
+    private final PerksRegistry perkRegistry;
     private final PlayerRegistry playerRegistry;
 
     public PerksGiveCommand(final LoopPerks plugin) {
         super("give", "perks.give", false);
 
         this.messageCache = plugin.getMessageCache();
-        this.perkRegistry = plugin.getPerkRegistry();
+        this.perkRegistry = plugin.getPerksRegistry();
         this.playerRegistry = plugin.getPlayerRegistry();
     }
 

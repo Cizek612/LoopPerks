@@ -7,6 +7,7 @@ import co.teamloops.perks.LoopPerks;
 import co.teamloops.perks.events.PerkEquipEvent;
 import co.teamloops.perks.events.PerkUnequipEvent;
 import co.teamloops.perks.perk.Perk;
+import co.teamloops.perks.perk.menu.PerksMenu;
 import co.teamloops.perks.player.PerkPlayer;
 import co.teamloops.perks.player.registry.PlayerRegistry;
 import org.bukkit.Bukkit;
@@ -42,7 +43,7 @@ public class PerkItemClickAction implements ClickRunnable {
     public void click(final InventoryClickEvent inventoryClickEvent) {
         final Player player = (Player) inventoryClickEvent.getWhoClicked();
         final PerkPlayer perkPlayer = playerRegistry.getRegistry().get(inventoryClickEvent.getWhoClicked().getUniqueId());
-        final Perk perk = plugin.getPerkRegistry().getRegistry().get(perksMap.get(inventoryClickEvent.getRawSlot()));
+        final Perk perk = plugin.getPerksRegistry().getRegistry().get(perksMap.get(inventoryClickEvent.getRawSlot()));
         final PlaceholderReplacer placeholderReplacer = new PlaceholderReplacer()
                 .addPlaceholder("%perk%", perk.getName())
                 .addPlaceholder("%limit%", Integer.toString(plugin.getSettingsConfig().getInt("Settings.Max-Perks")));
@@ -70,6 +71,8 @@ public class PerkItemClickAction implements ClickRunnable {
             final PerkEquipEvent perkEquipEvent = new PerkEquipEvent(player, perk);
             Bukkit.getPluginManager().callEvent(perkEquipEvent);
         }
+
+        plugin.getPerksMenu().openMenu(player);
 
     }
 }
